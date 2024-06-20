@@ -11,12 +11,23 @@ df['snapped_at'] = pd.to_datetime(df['snapped_at'])
 # set the snapped_at as the index
 df.set_index('snapped_at', inplace=True)
 
-# functio to calculate investment value
+# Function to calculate investment value
 def calculate_investment_value(start_date, end_date, initial_investment):
-    start_price = df.loc[start_date, 'price']
-    end_price = df.loc[end_date, 'price']
-    investment_value = (end_price / start_price) * initial_investment
-    return float(investment_value)
+    try:
+        # Convert price data to floats
+        df['price'] = df['price'].astype(float)
+        
+        start_price = df.loc[start_date, 'price']
+        end_price = df.loc[end_date, 'price']
+        investment_value = (end_price / start_price) * initial_investment
+        return float(investment_value)  # Ensure investment_value is cast to float
+    except KeyError:
+        st.error('One or both of the selected dates are outside the available range.')
+        return None
+    except Exception as e:
+        st.error(f'Error calculating investment value: {str(e)}')
+        return None
+
 
 # function to plot historical prices
 def plot_historical_prices():
@@ -45,7 +56,12 @@ def main():
         end_date_str = end_date.strftime('%Y-%m-%d')
         
         investment_value = calculate_investment_value(start_date_str, end_date_str, initial_investment)
-        st.write(f'The value of the investment on {end_date_str} would be ${investment_value:.2f}')
+        
+        if investment_value is not None:
+            st.write(f'The value of the investment on {end_date_str} would be ${investment_value:.2f}')
+            plot_historical_prices()
+        else:
+            st.error('Error calculating investment value. Please check your input dates.')
         
         plot_historical_prices()
 
