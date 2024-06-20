@@ -8,25 +8,27 @@ df = pd.read_csv('crypto_data/btc-usd-max.csv')
 # convert the snapped_at to datetime
 df['snapped_at'] = pd.to_datetime(df['snapped_at'])
 
+
 # set the snapped_at as the index
 df.set_index('snapped_at', inplace=True)
 
 # Function to calculate investment value
 def calculate_investment_value(start_date, end_date, initial_investment):
     try:
-        # Convert price data to floats
-        df['price'] = df['price'].astype(float)
-        
+        # Retrieve the start and end prices as scalar values
         start_price = df.loc[start_date, 'price']
         end_price = df.loc[end_date, 'price']
+
+        # Ensure these are scalar values
+        if isinstance(start_price, pd.Series):
+            start_price = start_price.iloc[0]
+        if isinstance(end_price, pd.Series):
+            end_price = end_price.iloc[0]
+
         investment_value = (end_price / start_price) * initial_investment
-        return float(investment_value)  # Ensure investment_value is cast to float
+        return investment_value
     except KeyError:
-        st.error('One or both of the selected dates are outside the available range.')
-        return None
-    except Exception as e:
-        st.error(f'Error calculating investment value: {str(e)}')
-        return None
+        return None  # Return None if dates are not found in DataFrame
 
 
 # function to plot historical prices
@@ -63,7 +65,6 @@ def main():
         else:
             st.error('Error calculating investment value. Please check your input dates.')
         
-        plot_historical_prices()
 
 if __name__ == '__main__':
     main()
