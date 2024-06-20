@@ -16,7 +16,7 @@ def calculate_investment_value(start_date, end_date, initial_investment):
     start_price = df.loc[start_date, 'price']
     end_price = df.loc[end_date, 'price']
     investment_value = (end_price / start_price) * initial_investment
-    return investment_value
+    return float(investment_value)
 
 # function to plot historical prices
 def plot_historical_prices():
