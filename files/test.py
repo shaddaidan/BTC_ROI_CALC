@@ -9,30 +9,26 @@ def main():
     # Custom CSS for header and other elements
     st.markdown("""
         <style>
-        .header {
-            background-color: #4CAF50;
-            padding: 20px;
-            text-align: center;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
+        .header h1 {
+            display: inline-block;
             width: 100%;
+            text-align: center;
         }
         .investment-value {
-            background-color: #f0f0f0;
+            background-color: #d4edda;
             padding: 10px;
             border-radius: 5px;
-            color: green;
-            font-size: 16px;
+            color: #155724;
+            font-size: 24px;
             font-weight: bold;
             margin: 10px 0;
         }
         .roi {
-            background-color: #f0f0f0;
+            background-color: #cce5ff;
             padding: 10px;
             border-radius: 5px;
-            color: blue;
-            font-size: 16px;
+            color: #004085;
+            font-size: 24px;
             font-weight: bold;
             margin: 10px 0;
         }
@@ -40,7 +36,7 @@ def main():
     """, unsafe_allow_html=True)
     
     # Header
-    st.markdown('<div class="header">📈 Historical Bitcoin Investment Calculator</div>', unsafe_allow_html=True)
+    st.markdown('<div class="header"><h1>📈 Historical Bitcoin Investment Calculator</h1></div>', unsafe_allow_html=True)
     
     # Sidebar
     st.sidebar.header('Investment Details 💼')

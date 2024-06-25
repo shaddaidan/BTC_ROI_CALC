@@ -32,22 +32,22 @@ def calculate_investment_value(start_date, end_date, initial_investment):
 
 # Function to plot historical prices
 def plot_historical_prices():
-    plt.figure(figsize=(14, 8))  # Increase the size of the figure
+    plt.figure(figsize=(5, 2))  # Increase the size of the figure
     
     # Customize the plot with a more refined style
     plt.plot(df.index, df['price'], label='Bitcoin Price', color='#1f77b4', linewidth=2.5)  # Use a finer color and line width
     
     # Add title and labels with improved styling
-    plt.title('Historical Bitcoin Prices', fontsize=20, fontweight='bold', color='#333333')
-    plt.xlabel('Date', fontsize=16, fontweight='bold', color='#333333')
-    plt.ylabel('Price (USD)', fontsize=16, fontweight='bold', color='#333333')
+    plt.title('Historical Bitcoin Prices', fontsize=7, fontweight='bold', color='#333333')
+    plt.xlabel('Date', fontsize=7, fontweight='bold', color='#333333')
+    plt.ylabel('Price (USD)', fontsize=7, fontweight='bold', color='#333333')
     
     # Customize the ticks on the axes
-    plt.xticks(fontsize=12, rotation=45, color='#555555')
-    plt.yticks(fontsize=12, color='#555555')
+    plt.xticks(fontsize=7, rotation=45, color='#555555')
+    plt.yticks(fontsize=7, color='#555555')
     
     # Add a legend with improved styling
-    plt.legend(fontsize=14, loc='upper left', frameon=True, fancybox=True, shadow=True, borderpad=1, framealpha=0.8)
+    plt.legend(fontsize=7, loc='upper left', frameon=True, fancybox=True, shadow=True, borderpad=1, framealpha=0.8)
     
     # Add grid with customized style
     plt.grid(color='gray', linestyle='--', linewidth=0.6, alpha=0.7)
