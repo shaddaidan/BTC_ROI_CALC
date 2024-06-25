@@ -1,3 +1,4 @@
+
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -61,3 +62,5 @@ def plot_historical_prices():
                  xytext=(max_price_date, max_price + 10000),
                  arrowprops=dict(facecolor='black', shrink=0.05, width=1, headwidth=6),
                  fontsize=12, fontweight='bold', color='darkred')
+
+    return plt

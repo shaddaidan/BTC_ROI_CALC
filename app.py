@@ -1,4 +1,3 @@
-# app.py
 
 import streamlit as st
 from btc_investment_calculator import calculate_investment_value, plot_historical_prices, df
@@ -23,7 +22,8 @@ def main():
         if investment_value is not None:
             st.markdown(f"<h2>The value of the investment on {end_date_str} would be <span style='color:green;'>${investment_value:.2f}</span> 💵</h2>", unsafe_allow_html=True)
             st.markdown(f"<h3>The ROI is <span style='color:blue;'>{roi_percent:.2f}%</span> 📈</h3>", unsafe_allow_html=True)
-            plot_historical_prices()
+            plt = plot_historical_prices()
+            st.pyplot(plt)  # Ensure the plot is displayed
         else:
             st.error('❌ Error calculating investment value. Please check your input dates.')
     
